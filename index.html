@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur EuroMillions Optimisé</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .description {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .grid {
+            display: flex;
+            gap: 12px;
+            margin: 20px 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .number, .star {
+            padding: 15px 20px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.2em;
+            min-width: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .number:hover, .star:hover {
+            transform: scale(1.1);
+        }
+
+        .number {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: 3px solid #ffffff;
+        }
+
+        .star {
+            background: linear-gradient(135deg, #feca57, #ff9ff3);
+            color: #2f3542;
+            border: 3px solid #ffffff;
+        }
+
+        .section {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .section h2 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        #generate {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        #generate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .stats {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .stats h3 {
+            margin-bottom: 15px;
+            color: #feca57;
+        }
+
+        .hot-cold-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .info-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .info-box h4 {
+            margin-bottom: 10px;
+            color: #feca57;
+        }
+
+        .hot-numbers, .cold-numbers {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎰 Générateur EuroMillions Optimisé</h1>
+        
+        <div class="description">
+            <p>Générez des combinaisons EuroMillions optimisées en utilisant l'analyse des numéros chauds et froids</p>
+        </div>
+
+        <div class="section">
+            <button id="generate">🎲 Générer Nouvelle Combinaison</button>
+        </div>
+
+        <div class="section">
+            <h2>🔢 Numéros Principaux</h2>
+            <div id="numbers" class="grid"></div>
+        </div>
+
+        <div class="section">
+            <h2>⭐ Étoiles Chance</h2>
+            <div id="stars" class="grid"></div>
+        </div>
+
+        <div class="stats">
+            <h3>📊 Informations de Stratégie</h3>
+            <br> Sur base des analyse des combinaisons de ces 5 dernières années, voici les numéros et étoiles les plus optimaux à jouer pour maximiser vos chances de gagner.
+            <div class="hot-cold-info">
+                <div class="info-box">
+                    <h4>🔥 Numéros Chauds </h4>
+                    <div class="hot-numbers">23, 44, 19, 21, 42, 50, 29</div>
+                    <p style="font-size: 0.8em; margin-top: 10px;">Numéros tirés fréquemment</p>
+                </div>
+                <div class="info-box">
+                    <h4>❄️ Numéros Froids </h4>
+                    <div class="cold-numbers">22, 46, 18, 33, 41, 38, 26</div>
+                    <p style="font-size: 0.8em; margin-top: 10px;">Numéros tirés moins fréquemment</p>
+                </div>
+            </div>
+            <div class="hot-cold-info">
+                <div class="info-box">
+                    <h4>🔥 Étoiles Chaudes</h4>
+                    <div class="hot-numbers">3, 2, 8</div>
+                </div>
+                <div class="info-box">
+                    <h4>❄️ Étoiles Froides</h4>
+                    <div class="cold-numbers">1, 10, 12</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function generateOptimizedGrid() {
+            const hotNumbers = [23, 44, 19, 21, 42, 50, 29];
+            const coldNumbers = [22, 46, 18, 33, 41, 38, 26];
+            const hotStars = [3, 2, 8];
+            const coldStars = [1, 10, 12];
+
+            function getRandomUnique(arr, count) {
+                const shuffled = [...arr].sort(() => 0.5 - Math.random());
+                return shuffled.slice(0, count);
+            }
+
+            // Sélectionner 4 numéros chauds et 1 numéro froid pour les numéros principaux (total 5)
+            const selectedHotNumbers = getRandomUnique(hotNumbers, 4);
+            const selectedColdNumber = getRandomUnique(coldNumbers, 1);
+            const mainNumbers = [...selectedHotNumbers, ...selectedColdNumber]
+                .sort((a, b) => a - b);
+
+            // Sélectionner 1 étoile chaude et 1 étoile froide (total 2)
+            const selectedHotStar = getRandomUnique(hotStars, 1);
+            const selectedColdStar = getRandomUnique(coldStars, 1);
+            const stars = [...selectedHotStar, ...selectedColdStar]
+                .sort((a, b) => a - b);
+
+            return {
+                numbers: mainNumbers,
+                stars: stars
+            };
+        }
+
+        function displayGrid() {
+            const grid = generateOptimizedGrid();
+            const numbersContainer = document.getElementById('numbers');
+            const starsContainer = document.getElementById('stars');
+            
+            // Effacer le contenu existant
+            numbersContainer.innerHTML = '';
+            starsContainer.innerHTML = '';
+            
+            // Afficher les numéros principaux avec animation
+            grid.numbers.forEach((num, index) => {
+                setTimeout(() => {
+                    const numberElement = document.createElement('span');
+                    numberElement.className = 'number';
+                    numberElement.textContent = num;
+                    numberElement.style.opacity = '0';
+                    numberElement.style.transform = 'scale(0)';
+                    numbersContainer.appendChild(numberElement);
+                    
+                    // Animation d'entrée
+                    setTimeout(() => {
+                        numberElement.style.transition = 'all 0.5s ease';
+                        numberElement.style.opacity = '1';
+                        numberElement.style.transform = 'scale(1)';
+                    }, 50);
+                }, index * 100);
+            });
+
+            // Afficher les étoiles chance avec animation
+            grid.stars.forEach((star, index) => {
+                setTimeout(() => {
+                    const starElement = document.createElement('span');
+                    starElement.className = 'star';
+                    starElement.textContent = star;
+                    starElement.style.opacity = '0';
+                    starElement.style.transform = 'scale(0)';
+                    starsContainer.appendChild(starElement);
+                    
+                    // Animation d'entrée
+                    setTimeout(() => {
+                        starElement.style.transition = 'all 0.5s ease';
+                        starElement.style.opacity = '1';
+                        starElement.style.transform = 'scale(1)';
+                    }, 50);
+                }, (index + 5) * 100); // Délai après les numéros
+            });
+        }
+
+        // Gestionnaires d'événements
+        document.addEventListener('DOMContentLoaded', displayGrid);
+        document.getElementById('generate').addEventListener('click', displayGrid);
+
+        // Affichage initial
+        displayGrid();
+    </script>
+</body>
+</html>
